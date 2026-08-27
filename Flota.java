@@ -59,9 +59,16 @@ public class Flota {
         int posMasKm = indiceMasKilometros(km);
         int posMneosKm = indiceMenorKilometros(km);
 
-        System.out.printf("========INFORME DE LA FOTA========");
+        System.out.printf("================INFORME DE LA FOTA================");
         System.out.printf("total kilometros recorridos: %10.2f km\n", totalKm);
         System.out.printf("total litros consumidos: %10.2f L" ,totalLitros);
-        System.out.printf("")
+        System.out.printf("Promedio de km por camion: %10.2f ", promedioKm);
+        System.out.printf("camion con mas kilometros: ");
+        System.out.printf("Consumo promedio flota: %10.2f L/100km", consumoPromedioFlota);
+        System.out.printf("===================================================");
+
+        public static void main (String [] args){
+            Scanner scanner = new Scanner (System.in);
+        }
     }
 }
