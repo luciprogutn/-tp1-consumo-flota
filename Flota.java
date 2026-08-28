@@ -2,9 +2,10 @@ import java.util.Scanner;
 
 public class Flota {
 
+
     public static final int CANTIDAD_CAMIONES = 6;
 
-    public static double calcularConsumocada100(double km, double litros){
+    public static double calcularConsumoCada100(double km, double litros){
     return (litros / km) * 100;
     }
     public static void cargarDatos(String[] patentes, double[] km,double [] litros, Scanner scanner){
@@ -33,7 +34,7 @@ public class Flota {
     }
     public static int indiceMasKilometros(double[] km){
         int indiceMax = 0;
-        for (int i = < km.length; i ++){
+        for (int i = 1; i < km.length; i ++){
             if (km[i] > km[indiceMax]){
                 indiceMax= i;
             }
@@ -44,31 +45,39 @@ public class Flota {
         int indiceMin = 0;
         for (int i = 1 ; i< km.length; i ++){
             if (km[i] < km[indiceMin]){
-                indiceMin;
+                indiceMin= i;
             }
         }
         return indiceMin;
     }
-    public static void mostrarInforme(String[] patentes, double[] km, double[] litros){
-        double totalKm= sumarArray(km);
-        double totalLitros= sumarArray(litros);
+    public static void mostrarInforme(String[] patentes, double[] km, double[] litros) {
+        double totalKm = sumarArray(km);
+        double totalLitros = sumarArray(litros);
         double promedioKm = totalKm / CANTIDAD_CAMIONES;
 
-        double consumoPromedioFlota = calcularConsumoCada100(totalkm, totalLitros);
+        double consumoPromedioFlota = calcularConsumoCada100(totalKm, totalLitros);
 
         int posMasKm = indiceMasKilometros(km);
-        int posMneosKm = indiceMenorKilometros(km);
+        int posMenosKm = indiceMenosKilometros(km);
 
-        System.out.printf("================INFORME DE LA FOTA================");
-        System.out.printf("total kilometros recorridos: %10.2f km\n", totalKm);
-        System.out.printf("total litros consumidos: %10.2f L" ,totalLitros);
-        System.out.printf("Promedio de km por camion: %10.2f ", promedioKm);
-        System.out.printf("camion con mas kilometros: ");
-        System.out.printf("Consumo promedio flota: %10.2f L/100km", consumoPromedioFlota);
-        System.out.printf("===================================================");
-
+        System.out.printf("================INFORME DE LA FOTA================\n");
+        System.out.printf("total kilometros recorridos....: %10.2f km\n", totalKm);
+        System.out.printf("total litros consumidos........: %10.2fL\n", totalLitros);
+        System.out.printf("Promedio de km por camion......: %10.2f\n", promedioKm);
+        System.out.printf("camion con mas kilometros......: %s(%.3f km)\n", patentes[posMasKm], km[posMasKm]);
+        System.out.printf("Consumo promedio flota.........: %10.2f L/100km\n", consumoPromedioFlota);
+        System.out.printf("===================================================\n");
+    }
         public static void main (String [] args){
             Scanner scanner = new Scanner (System.in);
-        }
+            String[] patentes = new String[CANTIDAD_CAMIONES];
+            double[] kmRecorridos = new double[CANTIDAD_CAMIONES];
+            double[] litrosConsumidos = new double[CANTIDAD_CAMIONES];
+
+            cargarDatos(patentes, kmRecorridos, litrosConsumidos, scanner);
+            mostrarInforme(patentes, kmRecorridos, litrosConsumidos);
+
+            scanner.close();
+
     }
 }
